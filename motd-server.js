@@ -1,4 +1,8 @@
+
 let net = require('net');
+const fs = require('fs');
+
+let text = fs.readFileSync(`./data/hello.txt`);
 
 let serverLog = require('./lib/serverLog');
 
@@ -14,6 +18,8 @@ let server = net.createServer(function(connection) {
     2. Send the contents do the client using connection.write(...)
     3. Close the connection
   */
+  connection.write(`${text}\n`);
+  connection.end(`Server closed\n`);
 });
 
 server.listen(SERVER_PORT, function() {

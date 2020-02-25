@@ -19,6 +19,11 @@ let server = net.createServer(function(connection) {
   connection.on('data', function(clientData) {
     // Use console.log to record when a client sends us data.
     // Use connection.write(...) to send data to the client
+    console.log(`Client at ${clientAddress} sent ${clientData}`);
+
+    connection.write(`${clientData}\n`);
+
+    connection.end(`Connection closed by foriegn host: `);
 
     // Remember, an echo server sends back exactly what was received.
   });
